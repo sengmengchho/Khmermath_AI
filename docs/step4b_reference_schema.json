@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://khmermath.local/schemas/step4b_provisional_reference.schema.json",
+  "title": "Step 4B provisional page reference (schema only)",
+  "description": "Schema for the Git-ignored, provisional full-page reference JSON files in data/evaluation/step4a_reference/. These records are NOT visually verified and are NOT approved for training or RAG. This file intentionally contains no textbook transcription.",
+  "type": "object",
+  "required": ["schema_version", "source", "reference", "quality", "review"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["1.0", "1.1"]},
+    "source": {
+      "type": "object",
+      "required": ["doc_id", "relative_file_path", "pdf_page", "render_dpi", "image_width", "image_height"],
+      "properties": {
+        "doc_id": {"type": "string"},
+        "document_type": {"type": "string"},
+        "curriculum_level": {"type": "string"},
+        "relative_file_path": {"type": "string"},
+        "pdf_page": {"type": "integer", "minimum": 1},
+        "printed_page": {"type": "string"},
+        "render_dpi": {"type": "integer"},
+        "image_width": {"type": "integer"},
+        "image_height": {"type": "integer"}
+      }
+    },
+    "reference": {
+      "type": "object",
+      "required": ["text", "blocks"],
+      "properties": {
+        "text": {"type": "string"},
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["order", "type", "bbox"],
+            "properties": {
+              "order": {"type": "integer"},
+              "type": {"type": "string", "enum": ["text", "formula"]},
+              "bbox": {
+                "type": "array",
+                "items": {"type": "integer"},
+                "minItems": 4,
+                "maxItems": 4,
+                "description": "[x0, y0, x1, y1] in 300-DPI image pixels"
+              },
+              "text": {"type": "string"},
+              "latex": {"type": "string"},
+              "formula_crop_bboxes": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {"type": "integer"},
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                "description": "Tight math-only crops; excludes Khmer labels and exercise numbers"
+              },
+              "original_step4a_latex": {"type": "string"},
+              "correction": {"type": "object"},
+              "notes": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "manual_correction_seconds": {"type": "number"},
+        "manual_correction_timing_source": {"type": "string"},
+        "verification_method": {"type": "string"}
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["reviewer", "verification_status", "visual_confirmation", "approved_for_training_or_rag"],
+      "properties": {
+        "reviewer": {"type": "string"},
+        "review_date": {"type": "string"},
+        "verification_status": {
+          "type": "string",
+          "enum": ["provisional_programmatic_visual_pending"],
+          "description": "Must remain provisional until human image review is performed."
+        },
+        "visual_confirmation": {
+          "type": "boolean",
+          "enum": [false],
+          "description": "Must remain false; this runtime cannot view rendered PDF images."
+        },
+        "approved_for_training_or_rag": {
+          "type": "boolean",
+          "enum": [false],
+          "description": "Must remain false until visual review and explicit approval."
+        },
+        "checks": {"type": "object"}
+      }
+    },
+    "corrections": {"type": "array", "items": {"type": "string"}},
+    "notes": {"type": "string"}
+  }
+}

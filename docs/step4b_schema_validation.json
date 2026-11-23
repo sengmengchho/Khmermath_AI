@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "schema_file": "step4b_reference_schema.json",
+  "schema_sha256": "4a3903bf88e3b50d472a559c929cb0fedd6ecad18fe83b51aab769e99e229d01",
+  "validator": "built-in subset checker (type, enum, required, min/maxItems, minimum)",
+  "all_valid": true,
+  "files": [
+    {
+      "file": "basic_course_book_p0114.json",
+      "sha256": "f85dd6aaf83ce9b65ee003058b8262e46ea1015eeac5a5649a003d870bad8bbc",
+      "valid": true,
+      "errors": [],
+      "review_status": "provisional_programmatic_visual_pending",
+      "visual_confirmation": false,
+      "approved_for_training_or_rag": false
+    },
+    {
+      "file": "advanced_course_book_p0085.json",
+      "sha256": "f533a758c076bf103e771fc25017e87193b9c8bf64a752d4bdd76858889ea013",
+      "valid": true,
+      "errors": [],
+      "review_status": "provisional_programmatic_visual_pending",
+      "visual_confirmation": false,
+      "approved_for_training_or_rag": false
+    },
+    {
+      "file": "basic_answer_key_p0001.json",
+      "sha256": "ee69c7661602849230d435285daf3368abd92a2cdc35455613485fb6dc1d5695",
+      "valid": true,
+      "errors": [],
+      "review_status": "provisional_programmatic_visual_pending",
+      "visual_confirmation": false,
+      "approved_for_training_or_rag": false
+    },
+    {
+      "file": "advanced_answer_key_p0020.json",
+      "sha256": "028d0bde56e4a90b01ed13692d32885f38812b4362a2859ef4d07875799b8a06",
+      "valid": true,
+      "errors": [],
+      "review_status": "provisional_programmatic_visual_pending",
+      "visual_confirmation": false,
+      "approved_for_training_or_rag": false
+    }
+  ],
+  "note": "Structural consistency only; it does not imply visual verification."
+}

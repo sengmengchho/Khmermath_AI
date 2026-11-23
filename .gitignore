@@ -22,6 +22,10 @@ data/processed/
 data/rag/
 data/instruction/
 data/evaluation/
+# Step 4B: full-page reference transcriptions are copyrighted source material.
+# Keep them out of Git; only schemas, code, and aggregate metrics are tracked.
+data/evaluation/step4a_reference/
+docs/step4a_reference/
 
 # Models and local databases
 models/

@@ -1,0 +1,236 @@
+{
+  "schema_version": "2.0",
+  "tool": "sympy",
+  "sympy_version": "1.14.0",
+  "scope": "Supported expressions only. Statuses are derived from simplified symbolic differences; proofs, layout, and unsupported LaTeX require human visual review.",
+  "assumptions": {
+    "symbols": {
+      "x": "real",
+      "t": "real",
+      "a": "real and positive"
+    },
+    "constraints": [
+      "a > 0; divisions by a also require a != 0",
+      "a^2 + 1 != 0 (automatic for real a)",
+      "exp(3*x) - x != 0 on the q1d domain",
+      "parse_latex emits unassumed named symbols; e/pi are normalized to constants and a/t/x/Ip to the pipeline symbols before comparison",
+      "Step 4A block 9 parses with a free t because the evaluation bar is not interpreted by parse_latex"
+    ]
+  },
+  "calculated_values": {
+    "advanced_course_book.V1": "pi/2",
+    "advanced_course_book.V2": "pi/5",
+    "advanced_course_book.V1_minus_V2": "3*pi/10",
+    "advanced_course_book.final_interval_integral": "117*pi/5",
+    "basic_answer_key.q1a": "-7",
+    "basic_answer_key.q1b": "9*x**2 - 7",
+    "basic_answer_key.q1c": "6*exp(2*x - 1)",
+    "basic_answer_key.q1d": "(3*exp(3*x) - 1)/(-x + exp(3*x))",
+    "advanced_answer_key.J_integral": "-a/(a**2*exp(pi*a/2) + exp(pi*a/2)) + 1/(a**2 + 1)",
+    "advanced_answer_key.J_antiderivative": "-a*(-a*sin(t) - cos(t))*exp(-a*t)/(a**2 + 1) + (-a*cos(t) + sin(t))*exp(-a*t)/(a**2 + 1)",
+    "advanced_answer_key.Iprime_corrected": "(a*exp(pi*a/2) + 1)*exp(-pi*a/2)/(a**2 + 1)",
+    "advanced_answer_key.Iprime_step4a_block9": "-exp(-pi*a)*cos(0)/(a**2 + 1) + (a*sin(t) + cos(t))*exp(-a*t)/(a**2*(a**2 + 1))"
+  },
+  "corrected_Iprime": {
+    "latex": "I'=\\frac{a+e^{-a\\pi/2}}{a^2+1}",
+    "sympy_rhs": "(a + exp(-pi*a/2))/(a**2 + 1)",
+    "sympy_verified": true,
+    "visual_confirmation": false
+  },
+  "original_step4a_block9": {
+    "latex": "I'=\\frac{e^{-a\\pi}}{a^2+1}\\left(e^{-a\\pi}\\cdot 0-\\cos 0\\right)-\\frac{1}{a^2}\\left[ -\\frac{e^{-at}(a\\sin t+\\cos t)}{a^2+1}\\right]_0^{\\pi/2}",
+    "sympy_rhs": "-exp(-pi*a)*cos(0)/(a**2 + 1) + (a*sin(t) + cos(t))*exp(-a*t)/(a**2*(a**2 + 1))",
+    "status": "FAIL",
+    "preserved_only_as_audit_record": true
+  },
+  "checks": [
+    {
+      "check_id": "advanced_course_book.V1",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "SymPy definite integral vs independently specified antiderivative pi*x^2/2",
+      "calculated_by_sympy": "pi/2",
+      "independent_expected": "pi/2",
+      "difference_simplified": "0",
+      "assumptions": [
+        "x is real"
+      ],
+      "reference_latex": null,
+      "note": ""
+    },
+    {
+      "check_id": "advanced_course_book.V2",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "SymPy definite integral vs independently specified antiderivative pi*x^5/5",
+      "calculated_by_sympy": "pi/5",
+      "independent_expected": "pi/5",
+      "difference_simplified": "0",
+      "assumptions": [
+        "x is real"
+      ],
+      "reference_latex": null,
+      "note": ""
+    },
+    {
+      "check_id": "advanced_course_book.V1_minus_V2",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "Calculated V1-V2 vs independently stated closed form 3*pi/10",
+      "calculated_by_sympy": "3*pi/10",
+      "independent_expected": "3*pi/10",
+      "difference_simplified": "0",
+      "assumptions": [
+        "x is real"
+      ],
+      "reference_latex": null,
+      "note": ""
+    },
+    {
+      "check_id": "advanced_course_book.final_interval_integral",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "SymPy definite integral vs independently written antiderivative of -x**4 - x**2 - 6*x + 8; reference stores the source integral only",
+      "calculated_by_sympy": "117*pi/5",
+      "independent_expected": "117*pi/5",
+      "difference_simplified": "0",
+      "assumptions": [
+        "x is real"
+      ],
+      "reference_latex": null,
+      "note": "The numeric value is recorded for verification but is not substituted into the reference transcription."
+    },
+    {
+      "check_id": "basic_answer_key.q1a",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "Derivative of reference primitive vs independently stated f(x)",
+      "calculated_by_sympy": "-7",
+      "independent_expected": "-7",
+      "difference_simplified": "0",
+      "assumptions": [
+        "x is real"
+      ],
+      "reference_latex": "F(x)=-7x+4,\\ f(x)=-7",
+      "note": ""
+    },
+    {
+      "check_id": "basic_answer_key.q1b",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "Derivative of reference primitive vs independently stated f(x)",
+      "calculated_by_sympy": "9*x**2 - 7",
+      "independent_expected": "9*x**2 - 7",
+      "difference_simplified": "0",
+      "assumptions": [
+        "x is real"
+      ],
+      "reference_latex": "F(x)=3x^3-7x,\\ f(x)=9x^2-7",
+      "note": ""
+    },
+    {
+      "check_id": "basic_answer_key.q1c",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "Derivative of reference primitive vs independently stated f(x)",
+      "calculated_by_sympy": "6*exp(2*x - 1)",
+      "independent_expected": "6*exp(2*x - 1)",
+      "difference_simplified": "0",
+      "assumptions": [
+        "x is real"
+      ],
+      "reference_latex": "F(x)=3e^{2x-1}-7,\\ f(x)=6e^{2x-1}",
+      "note": ""
+    },
+    {
+      "check_id": "basic_answer_key.q1d",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "Derivative of reference primitive vs independently stated f(x)",
+      "calculated_by_sympy": "(3*exp(3*x) - 1)/(-x + exp(3*x))",
+      "independent_expected": "(3*exp(3*x) - 1)/(-x + exp(3*x))",
+      "difference_simplified": "0",
+      "assumptions": [
+        "x is real",
+        "exp(3*x)-x != 0 on the stated domain"
+      ],
+      "reference_latex": "F(x)=\\ln(e^{3x}-x)+\\sqrt{11},\\ f(x)=(3e^{3x}-1)/(e^{3x}-x)",
+      "note": ""
+    },
+    {
+      "check_id": "advanced_answer_key.J_integral",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "SymPy definite integral vs integration-by-parts closed form",
+      "calculated_by_sympy": "-a/(a**2*exp(pi*a/2) + exp(pi*a/2)) + 1/(a**2 + 1)",
+      "independent_expected": "(-a*exp(-pi*a/2) + 1)/(a**2 + 1)",
+      "difference_simplified": "0",
+      "assumptions": [
+        "a is real",
+        "a > 0",
+        "a != 0 where division by a occurs",
+        "a^2 + 1 != 0 (always true for real a)"
+      ],
+      "reference_latex": "J=\\frac{1-ae^{-a\\pi/2}}{a^2+1}",
+      "note": ""
+    },
+    {
+      "check_id": "advanced_answer_key.J_antiderivative",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "Derivative of independently written antiderivative vs original integrand",
+      "calculated_by_sympy": "-a*(-a*sin(t) - cos(t))*exp(-a*t)/(a**2 + 1) + (-a*cos(t) + sin(t))*exp(-a*t)/(a**2 + 1)",
+      "independent_expected": "exp(-a*t)*sin(t)",
+      "difference_simplified": "0",
+      "assumptions": [
+        "a is real",
+        "a > 0",
+        "a != 0 where division by a occurs",
+        "a^2 + 1 != 0 (always true for real a)"
+      ],
+      "reference_latex": "\\int e^{-at}\\sin t\\,dt=-\\frac{e^{-at}(a\\sin t+\\cos t)}{a^2+1}",
+      "note": ""
+    },
+    {
+      "check_id": "advanced_answer_key.Iprime_corrected",
+      "status": "PASS",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "Solve I' = 1/a - J/a using SymPy J vs corrected reference LaTeX parsed symbolically",
+      "calculated_by_sympy": "(a*exp(pi*a/2) + 1)*exp(-pi*a/2)/(a**2 + 1)",
+      "independent_expected": "(a + exp(-pi*a/2))/(a**2 + 1)",
+      "difference_simplified": "0",
+      "assumptions": [
+        "a is real",
+        "a > 0",
+        "a != 0 where division by a occurs",
+        "a^2 + 1 != 0 (always true for real a)"
+      ],
+      "reference_latex": "I'=\\frac{a+e^{-a\\pi/2}}{a^2+1}",
+      "note": "Corrected expression is preserved verbatim in corrected_Iprime.latex; parsed names were normalized to pipeline symbols/constants."
+    },
+    {
+      "check_id": "advanced_answer_key.Iprime_step4a_block9",
+      "status": "FAIL",
+      "verification_type": "symbolic_comparison",
+      "verification_basis": "Parsed original Step 4A RHS vs parsed corrected RHS",
+      "calculated_by_sympy": "-exp(-pi*a)*cos(0)/(a**2 + 1) + (a*sin(t) + cos(t))*exp(-a*t)/(a**2*(a**2 + 1))",
+      "independent_expected": "(a + exp(-pi*a/2))/(a**2 + 1)",
+      "difference_simplified": "(-a**2*(a*exp(pi*a/2) + 1)*exp(a*(t + pi)) - a**2*exp(a*(t + pi/2)) + (a*sin(t) + cos(t))*exp(3*pi*a/2))*exp(-a*(t + 3*pi/2))/(a**2*(a**2 + 1))",
+      "assumptions": [
+        "a is real",
+        "a > 0",
+        "a != 0 where division by a occurs",
+        "a^2 + 1 != 0 (always true for real a)",
+        "parse_latex does not interpret the evaluation bar, leaving free t in the original RHS"
+      ],
+      "reference_latex": "I'=\\frac{e^{-a\\pi}}{a^2+1}\\left(e^{-a\\pi}\\cdot 0-\\cos 0\\right)-\\frac{1}{a^2}\\left[ -\\frac{e^{-at}(a\\sin t+\\cos t)}{a^2+1}\\right]_0^{\\pi/2}",
+      "note": "The original expression is retained only as an audit field; the corrected expression is the reference."
+    }
+  ],
+  "summary": {
+    "symbolic_comparisons": 12,
+    "pass": 11,
+    "fail": 1,
+    "calculated_values_recorded": 12
+  }
+}
